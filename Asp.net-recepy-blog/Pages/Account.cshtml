@@ -1,0 +1,164 @@
+﻿@page
+@model Asp.net_recepy_blog.Pages.AccountModel
+@inject MyDbContext DbContext
+@using Microsoft.EntityFrameworkCore;
+@using Microsoft.AspNetCore.Mvc;
+@using Microsoft.AspNetCore.Mvc.RazorPages;
+@using Asp.net_recepy_blog.Pages.Services;
+@using Asp.net_recepy_blog.Pages.Dbcontrol;
+@{
+
+    ViewData["Title"] = "Личный кабинет";
+    var user = ViewData["User"] as User;
+
+}
+
+<div class="container">
+    <div class="m-4">
+        @if (HttpContext.Session.GetString("UserId") != null)
+        {
+
+            <div class="pt-4 d-flex justify-content-center flex-column align-items-center">
+                @foreach (var post in DbContext.Posts.Where(t => t.UserId == int.Parse(HttpContext.Session.GetString("UserId"))))
+                {
+                    <div class="card my-3 p-3" style="width: 50%;">
+                        <h2>@post.Name</h2>
+                        <img src="@("/imgs/" + post.PhotoPath)" width="300px" height="300px" />
+                        <p>@post.Ingredients</p>
+                        <p>@post.CookingMethod</p>
+                        <button class="btn btn-outline-info mt-2" onclick="togglePostEditMenu('@post.PostId')">Изменить данные записи</button>
+                        <div id="editMenu_@post.PostId" style="display: none;" class="pt-4">
+                            <form method="post" asp-page-handler="UpdatePost">
+                                <input type="hidden" name="postId" value="@post.PostId" />
+                                <div class="form-group">
+                                    <label>Название</label>
+                                    <input asp-for="PostName" value="@post.Name" class="form-control" />
+                                </div>
+                                <div class="form-group mt-2">
+                                    <label>Ингредиенты</label>
+                                    <input asp-for="Ingredients" value="@post.Ingredients" class="form-control" />
+                                </div>
+                                <div class="form-group mt-2">
+                                    <label>Способ приготовления</label>
+                                    <input asp-for="Cookingmethod" value="@post.CookingMethod" class="form-control" />
+                                </div>
+                                <button type="submit" class="btn btn-success mt-2">Сохранить изменения</button>
+                            </form>
+                            <form method="post" asp-page-handler="DeletePost" class="pt-3">
+                                <input type="hidden" name="postId" value="@post.PostId" />
+                                <button type="submit" class="btn btn-danger">Удалить запись</button>
+                            </form>
+
+                        </div>
+
+                    </div>
+                }
+            </div>
+
+            <button onclick="toggleSettingsVisibility()" class="btn btn-outline-secondary mt-2 pb-2 mb-3">Смена данных пользователя</button>
+            <div id="Settings" style="display: none;">
+                <form method="post" asp-page-handler="UpdatePassword" class="pt-2 align-content-center d-flex justify-content-center w-100">
+                    <div class="w-50 text-start">
+                        <input type="hidden" name="userId" value="@HttpContext.Session.GetString("UserId")" />
+
+                        <div class="form-group pb-3 w-100">
+                            <label asp-for="UserC.Email">Почта</label>
+                            <input asp-for="UserC.Email" class="form-control" />
+                            <span asp-validation-for="UserC.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group pb-3 w-100">
+                            <label asp-for="UserC.Name">Имя</label>
+                            <input asp-for="UserC.Name" class="form-control input-dark" />
+                            <span asp-validation-for="UserC.Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group pb-3 w-100">
+                            <label asp-for="UserC.Password">Пароль</label>
+                            <input asp-for="UserC.Password" class="form-control" />
+                            <span asp-validation-for="UserC.Password" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary pt-2 mb-4">Сменить данные</button>
+                    </div>
+                </form>
+                <div class="d-flex justify-content-center">
+                    <form method="post" asp-page-handler="Logout" class="m-4">
+                        <button type="submit" class="btn btn-danger">Выйти</button>
+                    </form>
+                    <form id="deleteForm" method="post" class="m-4" asp-page-handler="DeleteAccount">
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Удалить аккаунт</button>
+                        <input type="hidden" name="userId" value="@HttpContext.Session.GetString("UserId")" />
+                    </form>
+                </div>
+            </div>
+
+            // modal
+            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog bg-dark">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Подтверждение</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Вы уверенны что хотите удалить аккаунт?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                            <button type="button" class="btn btn-primary" onclick="confirmDelete()">Подтвердить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="m-4 d-flex justify-content-center align-items-center mb-0">
+                <a class="btn text-body-secondary fs-5 fw-bold" asp-area="" asp-page="/Login">Войдите или зарегистрируйтесь</a>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function confirmDelete() {
+            // if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+            //     document.getElementById('deleteForm').submit();
+            // }
+            document.getElementById('deleteForm').submit();
+        }
+
+        function toggleSettingsVisibility() {
+            var tasksContainer = document.getElementById('Settings');
+            if (tasksContainer.style.display === 'none') {
+                tasksContainer.style.display = 'block';
+            } else {
+                tasksContainer.style.display = 'none';
+            }
+        }
+
+        var myModal = document.getElementById('deleteModal')
+        var myInput = document.getElementById('myInput')
+
+        myModal.addEventListener('shown.bs.modal', function () {
+            myInput.focus()
+        })
+
+        let openRecipes = new Set();
+
+        function togglePostEditMenu(postId) {
+            var editMenu = document.getElementById('editMenu_' + postId);
+            if (editMenu.style.display === 'none') {
+                editMenu.style.display = 'block';
+            } else {
+                editMenu.style.display = 'none';
+            }
+        }
+
+        let editMenus = {};
+
+        function toggleEditMenu(postId) {
+            toggleSettingsVisibility('editMenu_' + postId);
+        }
+
+    </script>
+}

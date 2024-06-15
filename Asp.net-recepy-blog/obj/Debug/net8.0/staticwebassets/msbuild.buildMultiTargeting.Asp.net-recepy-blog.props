@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Asp.net-recepy-blog.props" />
+</Project>

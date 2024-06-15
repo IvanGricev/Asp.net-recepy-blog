@@ -1,0 +1,305 @@
+﻿@page
+@model TaskMenagerV2.Pages.LoginModel
+@{
+    ViewData["Title"] = "Вход и регистрация";
+}
+
+<div class="containers bg" id="container">
+    <div class="form-container sign-up-container">
+        <form method="post">
+            <h1 class="fw-normal fs-1">Регистрация</h1>
+            <input asp-for"Action" type="hidden" name="Action" value="register" />
+            <div class="form-group">
+                <label asp-for="User.Name">Имя:</label>
+                <input asp-for="User.Name" class="form-control" type="text" />
+                <span asp-validation-for="User.Name"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Email">Электронная почта:</label>
+                <input asp-for="User.Email" class="form-control" id="emailAddress" type="email" />
+                <span asp-validation-for="User.Email"></span>
+            </div>
+            <div class="form-group ">
+                <label asp-for="User.Password">Пароль:</label>
+                <input asp-for="User.Password" type="password" class="form-control" type="password" />
+                <span asp-validation-for="User.Password"></span>
+            </div>
+            <button type="submit" value="register" class="btn btn-outline-primary btn-reg mt-1">Зарегистрироваться</button>
+        </form>
+    </div>
+
+    <div class="form-container sign-in-container">
+        <form method="post">
+            <h1 class="fw-normal fs-1">Вход</h1>
+            <input asp-for"Action" type="hidden" name="Action" value="login" />
+            <div class="form-group">
+                <label asp-for="Email">Электронная почта</label>
+                <input asp-for="Email" class="form-control" type="email" />
+                <span asp-validation-for="Email"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password">Пароль</label>
+                <input asp-for="Password" class="form-control" type="password" />
+                <span asp-validation-for="Password"></span>
+            </div>
+            <button type="submit" value="login" class="btn btn-outline-primary btn-reg mt-1">Войти</button>
+
+            <a class="btn btn-secondary mt-4" asp-page="/RestorePassword">Забыли пароль?</a>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1 class="fw-light fs-2">С возвращением!</h1>
+                <p class="fw-normal">Чтобы оставаться на связи с нами, пожалуйста, войдите, используя свои личные данные.</p>
+                <button class="ghost reg" id="signIn">Войти</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1 class="fw-light fs-2">Привет, друг!</h1>
+                <p class="fw-normal">Введите свои личные данные и начните путешествие вместе с нами!</p>
+                <button class="ghost reg" id="signUp">Зарегистрировться</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const signUpButton = document.getElementById("signUp");
+    const signInButton = document.getElementById("signIn");
+    const container = document.getElementById("container");
+
+    signUpButton.addEventListener("click", () =>
+        container.classList.add("right-panel-active")
+    );
+
+    signInButton.addEventListener("click", () =>
+        container.classList.remove("right-panel-active")
+    );
+</script>
+<style>
+
+    h1 {
+        font-weight: bold;
+        margin: 0;
+    }
+
+    p {
+        font-size: 14px;
+        font-weight: 100;
+        line-height: 20px;
+        letter-spacing: 0.5px;
+        margin: 20px 0 30px;
+    }
+
+    span {
+        font-size: 12px;
+    }
+
+    a {
+        color: #333;
+        font-size: 14px;
+        text-decoration: none;
+        margin: 15px 0;
+    }
+
+    .containers {
+        border-radius: 10px;
+        overflow: hidden;
+        width: 768px;
+        max-width: 100%;
+        min-height: 480px;
+    }
+
+    .form-container form {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2);
+        background: white;
+        display: flex;
+        flex-direction: column;
+        padding: 0 50px;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .social-container {
+        margin: 20px 0;
+    }
+
+        .social-container a {
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 5px;
+            height: 40px;
+            width: 40px;
+        }
+
+    .form-container input {
+        background: transparent;
+        color: black !important;
+        border-color: rgba(210, 234, 240, 1);
+        border-width: 3px;
+        border-style: solid;
+        border-radius: 20px;
+        padding: 12px 15px;
+        margin: 8px 0;
+        width: 100%;
+    }
+
+    ::placeholder {
+        color: black;
+    }
+
+    .text-red {
+        color: rgba(210, 234, 240, 1);
+    }
+
+    .btn-reg {
+        color: black;
+        border-color: rgba(210, 234, 240, 1);
+        border-width: 3px;
+        border-style: solid;
+        border-radius: 20px;
+        padding-left: 40px;
+        padding-right: 40px;
+        font-size: 18px;
+    }
+
+        .btn-reg:hover {
+            background-color: rgba(210, 234, 240, 1) !important;
+            border-color: black !important;
+        }
+
+        .btn-reg:active {
+            background-color: rgba(221, 222, 224, 1) !important;
+            border-color: black !important;
+            transform: scale(0.95);
+        }
+
+    .reg {
+        border-radius: 20px;
+        border: 1px solid;
+        color: black;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+    }
+
+        .reg:active {
+            transform: scale(0.95);
+        }
+
+        .reg:focus {
+            outline: none;
+        }
+
+        .reg.ghost {
+            background: transparent;
+            border-color: rgba(221, 222, 224, 1);
+        }
+
+    .form-container {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        transition: all 0.6s ease-in-out;
+    }
+
+    .sign-in-container {
+        left: 0;
+        width: 50%;
+        z-index: 2;
+    }
+
+    .sign-up-container {
+        left: 0;
+        width: 50%;
+        z-index: 1;
+        opacity: 0;
+    }
+
+    .overlay-container {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+        transition: transform 0.6s ease-in-out;
+        z-index: 100;
+    }
+
+    .overlay {
+        background: linear-gradient(to bottom, rgba(210, 234, 240, 1), rgba(255, 244, 222, 1)) no-repeat 0 0 / cover;
+        color: black;
+        position: relative;
+        left: -100%;
+        height: 100%;
+        width: 200%;
+        transform: translateY(0);
+        transition: transform 0.6s ease-in-out;
+    }
+
+    .overlay-panel {
+        position: absolute;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 40px;
+        height: 100%;
+        width: 50%;
+        text-align: center;
+        transform: translateY(0);
+        transition: transform 0.6s ease-in-out;
+    }
+
+    .overlay-right {
+        right: 0;
+        transform: translateY(0);
+    }
+
+    .overlay-left {
+        transform: translateY(-20%);
+    }
+
+    /* Move signin to right */
+    .containers.right-panel-active .sign-in-container {
+        transform: translateY(100%);
+    }
+
+    /* Move overlay to left */
+    .containers.right-panel-active .overlay-container {
+        transform: translateX(-100%);
+    }
+
+    /* Bring signup over signin */
+    .containers.right-panel-active .sign-up-container {
+        transform: translateX(100%);
+        opacity: 1;
+        z-index: 5;
+    }
+
+    /* Move overlay back to right */
+    .containers.right-panel-active .overlay {
+        transform: translateX(50%);
+    }
+
+    /* Bring back the text to center */
+    .containers.right-panel-active .overlay-left {
+        transform: translateY(0);
+    }
+
+    /* Same effect for right */
+    .containers.right-panel-active .overlay-right {
+        transform: translateY(20%);
+    }
+</style>
+
