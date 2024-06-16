@@ -11,13 +11,13 @@ namespace Asp.net_recepy_blog.Pages.Dbcontrol
         [BindProperty]
         [Required]
         [StringLength(100)]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Username can only contain letters.")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Имя пользователя должно состоять только из букв.")]
         public string Name { get; set; }
 
         [BindProperty]
         [Required]
         [StringLength(100, MinimumLength = 4)]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{4,}$", ErrorMessage = "Password must meet complexity requirements.")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{4,}$", ErrorMessage = "Пароль должен содержать заглавные и строчные буквы, цифры и специальные символы.")]
         public string Password { get; set; }
 
         [BindProperty]

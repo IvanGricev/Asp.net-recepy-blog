@@ -48,9 +48,9 @@ namespace Asp.net_recepy_blog.Pages
             }
             if (UserC.Email != null)
             {
-                await _emailService.SendEmailAsync(user.Email, "Account data changing!", "You have changed your email.");
+                await _emailService.SendEmailAsync(user.Email, "Данные аккаунта изменились!", "Вы сменили свою электронную почту, теперь уведомления не будут приходить на эту почту.");
                 user.Email = UserC.Email;
-                await _emailService.SendEmailAsync(user.Email, "Account data changing!", "This is now your email.");
+                await _emailService.SendEmailAsync(user.Email, "Данные аккаунта изменились!", "Это ваша новая электронная почта привязанная сайту по обмену рецептами.");
             }
             await _dbContext.SaveChangesAsync();
 
