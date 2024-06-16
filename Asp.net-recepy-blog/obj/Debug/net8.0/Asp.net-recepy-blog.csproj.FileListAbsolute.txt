@@ -105,3 +105,4 @@ C:\xampp\htdocs\Asp.net-recepy-blog\Asp.net-recepy-blog\obj\Debug\net8.0\refint\
 C:\xampp\htdocs\Asp.net-recepy-blog\Asp.net-recepy-blog\obj\Debug\net8.0\Asp.net-recepy-blog.pdb
 C:\xampp\htdocs\Asp.net-recepy-blog\Asp.net-recepy-blog\obj\Debug\net8.0\Asp.net-recepy-blog.genruntimeconfig.cache
 C:\xampp\htdocs\Asp.net-recepy-blog\Asp.net-recepy-blog\obj\Debug\net8.0\ref\Asp.net-recepy-blog.dll
+C:\xampp\htdocs\asp.net-recepy-blog\Asp.net-recepy-blog\obj\Debug\net8.0\Asp.net-recepy-blog.sourcelink.json

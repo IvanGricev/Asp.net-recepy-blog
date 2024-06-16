@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dAKhzAI1601kf9LcuJ1UXq1lNVEzOoo1Vyf7vIcBKh8=",
+  "Hash": "f1bHwmxqzy5BRQb4s3zje1sm2xfZr36dI60g8u8uiZo=",
   "Source": "Asp.net-recepy-blog",
   "BasePath": "_content/Asp.net-recepy-blog",
   "Mode": "Default",
@@ -186,6 +186,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\imgs\\Instagram.svg"
+    },
+    {
+      "Identity": "C:\\xampp\\htdocs\\asp.net-recepy-blog\\Asp.net-recepy-blog\\wwwroot\\imgs\\privacy.png",
+      "SourceId": "Asp.net-recepy-blog",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\xampp\\htdocs\\asp.net-recepy-blog\\Asp.net-recepy-blog\\wwwroot\\",
+      "BasePath": "_content/Asp.net-recepy-blog",
+      "RelativePath": "imgs/privacy.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imgs\\privacy.png"
     },
     {
       "Identity": "C:\\xampp\\htdocs\\asp.net-recepy-blog\\Asp.net-recepy-blog\\wwwroot\\imgs\\Twitter.svg",

@@ -37,6 +37,10 @@
       "PackagePath": "staticwebassets\\imgs\\favicon.png"
     },
     {
+      "Id": "C:\\xampp\\htdocs\\asp.net-recepy-blog\\Asp.net-recepy-blog\\wwwroot\\imgs\\privacy.png",
+      "PackagePath": "staticwebassets\\imgs\\privacy.png"
+    },
+    {
       "Id": "C:\\xampp\\htdocs\\asp.net-recepy-blog\\Asp.net-recepy-blog\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

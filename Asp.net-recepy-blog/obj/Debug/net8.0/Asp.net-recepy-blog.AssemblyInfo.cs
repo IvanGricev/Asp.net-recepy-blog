@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Asp.net-recepy-blog")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b52b4ef2eb6da976d0244b7f9de3da9d5658d860")]
 [assembly: System.Reflection.AssemblyProductAttribute("Asp.net-recepy-blog")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Asp.net-recepy-blog")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

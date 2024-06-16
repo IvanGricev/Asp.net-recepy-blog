@@ -4,7 +4,7 @@ using Asp.net_recepy_blog.Pages.Services;
 using Asp.net_recepy_blog.Pages.Dbcontrol;
 using System.Text.RegularExpressions;
 
-namespace TaskMenagerV2.Pages
+namespace Asp.net_recepy_blog.Pages
 {
     public class LoginModel : PageModel
     {
