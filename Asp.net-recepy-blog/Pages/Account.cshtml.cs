@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Asp.net_recepy_blog.Pages.Services;
 using Asp.net_recepy_blog.Pages.Dbcontrol;
+using Microsoft.Extensions.Hosting;
 
 namespace Asp.net_recepy_blog.Pages
 {
@@ -10,12 +11,13 @@ namespace Asp.net_recepy_blog.Pages
         private readonly IUserServices _userService;
         private readonly MyDbContext _dbContext;
         private readonly EmailServices _emailService;
-
-        public AccountModel(IUserServices userService, MyDbContext dbContext, EmailServices emailService)
+        private readonly PostsServices _postsService;
+        public AccountModel(IUserServices userService, MyDbContext dbContext, EmailServices emailService, PostsServices postsService)
         {
             _userService = userService;
             _dbContext = dbContext;
             _emailService = emailService;
+            _postsService = postsService;
         }
         public async Task<IActionResult> OnGetAsync()
         {
@@ -64,6 +66,13 @@ namespace Asp.net_recepy_blog.Pages
             {
                 return NotFound();
             }
+
+            var posts = await _postsService.GetPostByUserIdAsync(userId);
+            foreach(var post in posts)
+            {
+                _dbContext.Posts.Remove(post);
+            }
+            await _dbContext.SaveChangesAsync();
 
             await _userService.DeleteUserAsync(userId);
             HttpContext.Session.Clear();

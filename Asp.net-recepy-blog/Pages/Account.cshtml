@@ -55,7 +55,7 @@
                 }
             </div>
 
-            <button onclick="toggleSettingsVisibility()" class="btn btn-outline-secondary mt-2 pb-2 mb-3">Смена данных пользователя</button>
+            <button onclick="toggleSettingsVisibility()" class="btn btn-outline-secondary mt-2 pb-2 mb-3">Настройки пользователя</button>
             <div id="Settings" style="display: none;">
                 <form method="post" asp-page-handler="UpdatePassword" class="pt-2 align-content-center d-flex justify-content-center w-100">
                     <div class="w-50 text-start">
@@ -121,18 +121,17 @@
 @section Scripts {
     <script>
         function confirmDelete() {
-            // if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
-            //     document.getElementById('deleteForm').submit();
-            // }
-            document.getElementById('deleteForm').submit();
+            if (confirm('Вы уверены, что хотите удалить свой аккаунт? Это действие нельзя отменить.')) {
+                document.getElementById('deleteForm').submit();
+            }
         }
 
         function toggleSettingsVisibility() {
-            var tasksContainer = document.getElementById('Settings');
-            if (tasksContainer.style.display === 'none') {
-                tasksContainer.style.display = 'block';
+            var settingsContainer = document.getElementById('Settings');
+            if (settingsContainer.style.display === 'none') {
+                settingsContainer.style.display = 'block';
             } else {
-                tasksContainer.style.display = 'none';
+                settingsContainer.style.display = 'none';
             }
         }
 
@@ -155,10 +154,6 @@
         }
 
         let editMenus = {};
-
-        function toggleEditMenu(postId) {
-            toggleSettingsVisibility('editMenu_' + postId);
-        }
 
     </script>
 }
