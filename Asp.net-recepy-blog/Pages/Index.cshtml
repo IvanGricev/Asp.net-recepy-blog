@@ -7,6 +7,10 @@
     ViewData["Title"] = "Рецепты";
 }
 <div class="container">
+@*     <form class="d-inline-flex my-2 my-lg-0 w-100" onsubmit="event.stopPropagation(); searchPosts(event);">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-secondary my-2 my-sm-0 m-3" type="submit">Search</button>
+    </form> *@
     <div class="pt-4 d-flex justify-content-center">
         @if (HttpContext.Session.GetString("UserId") != null)
         {
@@ -17,6 +21,10 @@
                     <div class="form-group pt-3">
                         <label asp-for="newPost.Name">Название</label>
                         <input asp-for="newPost.Name" class="form-control w-100" />
+                    </div>
+                    <div class="form-group pt-3 pb-3">
+                        <label asp-for="newPost.PhotoPath">Фото</label>
+                        <input asp-for="newPost.PhotoPath" class="form-control-file" type="file" accept="image/*" />
                     </div>
                     <div class="form-group pt-3 pb-3">
                         <label asp-for="newPost.Ingredients">Ингридиенты</label>
