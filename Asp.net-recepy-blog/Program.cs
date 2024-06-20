@@ -35,7 +35,7 @@ builder.Services.AddControllersWithViews();
 var app = builder.Build();
 
 app.UseSession();
-
+app.UseStaticFiles();
 app.UseRouting();
 
 // Configure the HTTP request pipeline.

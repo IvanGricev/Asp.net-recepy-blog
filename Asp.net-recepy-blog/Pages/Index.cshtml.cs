@@ -29,38 +29,49 @@ namespace Asp.net_recepy_blog.Pages
         [BindProperty]
         public Posts newPost { get; set; }
 
+        [BindProperty]
+        public IFormFile photo { get; set; }
+
         public void OnGet()
         {
 
         }
 
         [HttpPost]
-        public async Task<IActionResult> OnPostAsync(IFormFile photo)
+        public async Task<IActionResult> OnPostAsync()
         {
             Console.WriteLine("Toggeled AddPost");
             Console.WriteLine($"Post: {newPost.Name}, {newPost.PostId}");
             if (photo != null && photo.Length > 0)
             {
-                var webRootPath = _hostingEnvironment.WebRootPath;
-                var filePath = Path.Combine(webRootPath, "imgs/", Guid.NewGuid().ToString() + Path.GetExtension(photo.FileName));
+                var fileName = Path.GetFileName(photo.FileName);
+                string directoryPath = Path.Combine(_hostingEnvironment.WebRootPath, "imgs");
+
+                var filePath = Path.Combine(directoryPath, fileName);
                 try
                 {
-                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
                     {
-                        await photo.CopyToAsync(stream);
+                        await photo.CopyToAsync(fileStream);
                     }
                     newPost.PhotoPath = Path.GetFileName(filePath);
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine($"Ошибка сохранения картинки: {ex.Message}");
+                    // Обработка исключения, например, можно установить путь к запасной картинке
+                    newPost.PhotoPath = "default.png";
                 }
-
+            }
+            else
+            {
+                newPost.PhotoPath = "default.png";
             }
             _context.Posts.Add(newPost);
             await _context.SaveChangesAsync();
             return RedirectToPage("Index");
         }
+
 
     }
 }

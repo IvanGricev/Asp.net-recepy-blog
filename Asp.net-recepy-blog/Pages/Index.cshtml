@@ -16,15 +16,15 @@
         {
             <button onclick="toggleSettingsVisibility()" class="btn btn-outline-secondary mt-2 mb-3">Добавить новый рецепт</button>
             <div id="Addpost" style="display: none !important;" class="addpost p-4 w-25">
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     <input type="hidden" asp-for="newPost.UserId" value="@HttpContext.Session.GetString("UserId")" />
                     <div class="form-group pt-3">
                         <label asp-for="newPost.Name">Название</label>
                         <input asp-for="newPost.Name" class="form-control w-100" />
                     </div>
                     <div class="form-group pt-3 pb-3">
-                        <label asp-for="newPost.PhotoPath">Фото</label>
-                        <input asp-for="newPost.PhotoPath" class="form-control-file" type="file" accept="image/*" />
+                        <label asp-for="photo">Фото</label>
+                        <input asp-for="photo" class="form-control-file" type="file" />
                     </div>
                     <div class="form-group pt-3 pb-3">
                         <label asp-for="newPost.Ingredients">Ингридиенты</label>

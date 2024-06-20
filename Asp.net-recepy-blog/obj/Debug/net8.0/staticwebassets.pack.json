@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\xampp\\htdocs\\asp.net-recepy-blog\\Asp.net-recepy-blog\\wwwroot\\images\\download.jpg",
+      "PackagePath": "staticwebassets\\images\\download.jpg"
+    },
+    {
       "Id": "C:\\xampp\\htdocs\\asp.net-recepy-blog\\Asp.net-recepy-blog\\wwwroot\\imgs\\Facebook.svg",
       "PackagePath": "staticwebassets\\imgs\\Facebook.svg"
     },

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "f1bHwmxqzy5BRQb4s3zje1sm2xfZr36dI60g8u8uiZo=",
+  "Hash": "+/PRX1dA5Q2QhvPmULaNwDNd4I/dRaz6JPAztuQ3CFc=",
   "Source": "Asp.net-recepy-blog",
   "BasePath": "_content/Asp.net-recepy-blog",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\xampp\\htdocs\\asp.net-recepy-blog\\Asp.net-recepy-blog\\wwwroot\\images\\download.jpg",
+      "SourceId": "Asp.net-recepy-blog",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\xampp\\htdocs\\asp.net-recepy-blog\\Asp.net-recepy-blog\\wwwroot\\",
+      "BasePath": "_content/Asp.net-recepy-blog",
+      "RelativePath": "images/download.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\download.jpg"
     },
     {
       "Identity": "C:\\xampp\\htdocs\\asp.net-recepy-blog\\Asp.net-recepy-blog\\wwwroot\\imgs\\about-img.jpg",
